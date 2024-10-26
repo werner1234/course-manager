@@ -24,8 +24,7 @@
     },
     { "name": "Performance Management",
       "hours": 10,
-      "percentageCompleted": 90,
-      "completionDate": "2024-11-22"
+      "percentageCompleted": 90
     }
   ]
 }

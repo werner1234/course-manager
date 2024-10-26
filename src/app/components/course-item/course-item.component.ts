@@ -46,6 +46,7 @@ export class CourseItemComponent {
 
   markComplete() {
     this.course.percentageCompleted = 100;
+    this.course.completionDate = this.course.completionDate || new Date();
     this.selected = false;
   }
 }

@@ -30,13 +30,14 @@
   text-align: right;
   display: flex;
   font-size: 0.9rem;
+  text-align: left;
 }
 
 .date-picker-span {
   cursor: pointer;
   display: inline-flex;
-  padding: 1px 6px 1px 0;
   border-radius: 5px;
+  padding: 2px 6px 2px 2px;
 
   &.no-date {
     border: dashed 2px #DF2935;
@@ -48,7 +49,7 @@
     border: none;
     background-color: #ff350d;
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
   }
 }
@@ -75,7 +76,7 @@
   flex-direction: column;
   padding: 1rem 0;
   position: absolute;
-  right: -50px;
+  right: -44px;
   height: 100%;
   box-sizing: border-box;
   top: 0;

@@ -9,7 +9,7 @@
           <input matInput [matDatepicker]="picker" [(ngModel)]="course.completionDate" class="date-picker-input">
           <mat-datepicker #picker></mat-datepicker>
           <div (click)="picker.open(); $event.stopPropagation()">
-            {{ (course.completionDate | date:'shortDate') || 'Select completion date'}}
+            {{ course.completionDate ? ('Deadline: ' + (course.completionDate | date:'shortDate')) : 'Select completion date' }}
           </div>
         </div>
         <div *ngIf="course.percentageCompleted == 100" class="completed">

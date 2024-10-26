@@ -6,6 +6,8 @@ import {CourseItemComponent} from "../course-item/course-item.component";
 import {MatButtonModule} from "@angular/material/button";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatIconModule} from "@angular/material/icon";
+import {OverviewComponent} from "../overview/overview.component";
+import {AllCourseListComponent} from "../all-course-list/all-course-list.component";
 
 @Component({
   selector: 'app-course-list',
@@ -14,7 +16,9 @@ import {MatIconModule} from "@angular/material/icon";
     CommonModule,
     CourseItemComponent,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    OverviewComponent,
+    AllCourseListComponent
   ],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss',
@@ -35,13 +39,11 @@ import {MatIconModule} from "@angular/material/icon";
 })
 export class CourseListComponent {
   @HostListener('document:click', ['$event'])
-  onClickOutside(event: MouseEvent): void {
+  onClickOutside(): void {
     this.selectedCourse = null;
   }
 
   activeCourses: Course[] = [];
-
-  allCourses: Course[] = [];
 
   selectedCourse: Course | null = null;
 
@@ -60,20 +62,8 @@ export class CourseListComponent {
       });
   }
 
-  getAllCourses() {
-    this.courseService.getAllCourses()
-      .subscribe((courses) => {
-        this.allCourses = courses;
-        this.activeCourses.forEach(course2 => {
-          const foundCourse = this.allCourses.find(course1 => course1.name === course2.name);
-          foundCourse && (foundCourse.active = true);
-        });
-      });
-  }
-
   toggleAddCourse() {
     this.addCourseOpen = !this.addCourseOpen;
-    this.getAllCourses();
   }
 
   removeCourse(course: Course) {
@@ -81,11 +71,13 @@ export class CourseListComponent {
     this.selectedCourse = null;
   }
 
-  addCourses() {
-    this.activeCourses = this.activeCourses.concat(this.allCourses
-      .filter(c => c.selected)
-      .map(c => ({ ...c, percentageCompleted: c.percentageCompleted ?? 0 })));
+  addCourses(courses: Course[]) {
+    this.activeCourses = this.activeCourses.concat(courses);
     this.selectedCourse = null;
+    this.addCourseOpen = false;
+  }
+
+  closeModal() {
     this.addCourseOpen = false;
   }
 }

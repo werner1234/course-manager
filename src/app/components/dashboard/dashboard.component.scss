@@ -1,7 +1,8 @@
 .dashboard-container {
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   min-height: 100vh;
-  padding: 10vh;
+  padding: 10vh max(10vw, 50px);
 }

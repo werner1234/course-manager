@@ -1,0 +1,48 @@
+.close-container {
+  display: flex;
+
+  mat-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 4vw;
+    top: 4vh;
+  }
+}
+
+.course-item {
+  margin: 1rem 0;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: #fcf8f7;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &.active {
+    opacity: 0.4;
+    cursor: unset;
+  }
+
+  .icon {
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.5rem;
+    box-sizing: border-box;
+
+    mat-icon {
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      color: #ff350d;
+    }
+  }
+}
+
+.add-button {
+  text-align: center;
+  margin-top: 2rem;
+}
