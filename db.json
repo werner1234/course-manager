@@ -1,0 +1,31 @@
+{
+  "all-courses": [
+    { "name": "Introduction to Human Resource Management", "hours": 20 },
+    { "name": "Employee Relations", "hours": 15 },
+    { "name": "Performance Management", "hours": 10 },
+    { "name": "Recruitment and Selection", "hours": 25 },
+    { "name": "Training and Development", "hours": 12 },
+    { "name": "Compensation and Benefits", "hours": 30 },
+    { "name": "Labor Law and Compliance", "hours": 22 },
+    { "name": "Diversity, Equity, and Inclusion", "hours": 18 },
+    { "name": "Occupational Health and Safety", "hours": 15 },
+    { "name": "Leadership and Management", "hours": 10 }
+  ],
+  "active-courses": [
+    { "name": "Introduction to Human Resource Management",
+      "hours": 20,
+      "percentageCompleted": 80,
+      "completionDate": "2024-11-01"
+    },
+    { "name": "Employee Relations",
+      "hours": 15,
+      "percentageCompleted": 60,
+      "completionDate": "2024-11-15"
+    },
+    { "name": "Performance Management",
+      "hours": 10,
+      "percentageCompleted": 90,
+      "completionDate": "2024-11-22"
+    }
+  ]
+}

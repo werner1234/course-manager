@@ -1,0 +1,38 @@
+<div class="course-container">
+  <div *ngIf="course" class="course" [ngClass]="{'selected': selected}">
+    <div class="course-line">
+      <div>
+        {{course.name}}
+      </div>
+      <div class="status">
+        <div *ngIf="course.percentageCompleted != 100" class="date-picker-span" [ngClass]="{'no-date': !course.completionDate, 'has-date': course.completionDate}">
+          <input matInput [matDatepicker]="picker" [(ngModel)]="course.completionDate" class="date-picker-input">
+          <mat-datepicker #picker></mat-datepicker>
+          <div (click)="picker.open(); $event.stopPropagation()">
+            {{ (course.completionDate | date:'shortDate') || 'Select completion date'}}
+          </div>
+        </div>
+        <div *ngIf="course.percentageCompleted == 100" class="completed">
+          <mat-icon matTooltip="Completed">check_circle</mat-icon>
+          Completed on {{ (course.completionDate | date:'shortDate')}}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        {{course.percentageCompleted}}%
+      </div>
+      <div>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" [style.width]="course.percentageCompleted + '%'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <ng-container *ngIf="selected && course.percentageCompleted != 100">
+      <mat-icon (click)="markComplete()" title="Mark as completed">check_circle</mat-icon>
+      <mat-icon (click)="remove()" title="Remove course">cancel</mat-icon>
+    </ng-container>
+  </div>
+</div>

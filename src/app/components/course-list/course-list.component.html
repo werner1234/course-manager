@@ -1,0 +1,38 @@
+<div (click)="selectedCourse = null;">
+  <div class="button-container">
+    <button (click)="toggleAddCourse();">Add course(s)</button>
+  </div>
+  <div class="info-container">
+    <mat-icon>info</mat-icon>Click on a course to mark it as completed or remove it.
+  </div>
+  <div *ngIf="activeCourses" class="course-container">
+    <ng-container *ngFor="let course of activeCourses">
+      <app-course-item
+          [course]="course"
+          [selected]="selectedCourse === course"
+          (click)="selectedCourse = course; $event.stopPropagation()"
+          (removeCourse)="removeCourse($event)"
+      >
+      </app-course-item>
+    </ng-container>
+  </div>
+</div>
+<div class="add-course-container" [@slideIn]="addCourseOpen ? 'in' : 'out'">
+  <div class="close-container">
+    <mat-icon (click)="addCourseOpen = false;">close</mat-icon>
+  </div>
+  <ng-container *ngFor="let course of allCourses">
+    <div class="course-item"
+         (click)="!course.active && course.selected = !course.selected"
+         [ngClass]="{'active': course.active}"
+    >
+      {{course.name}} - {{course.hours}} hours
+      <span class="icon">
+        <mat-icon *ngIf="course.selected">check_circle</mat-icon>
+      </span>
+    </div>
+  </ng-container>
+  <div class="add-button">
+    <button (click)="addCourses();">Add selected course(s)</button>
+  </div>
+</div>

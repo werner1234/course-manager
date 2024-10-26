@@ -1,1 +1,163 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+
+@use 'sass:map';
+
+@include mat.core();
+// Note: Color palettes are generated from primary: #ff350d, secondary: #ffffff
+$_palettes: (
+    primary: (
+        0: #000000,
+        10: #3e0500,
+        20: #640c00,
+        25: #791000,
+        30: #8d1500,
+        35: #a31a00,
+        40: #b91e00,
+        50: #e62800,
+        60: #ff5635,
+        70: #ff8a72,
+        80: #ffb4a5,
+        90: #ffdad3,
+        95: #ffede9,
+        98: #fff8f6,
+        99: #fffbff,
+        100: #ffffff,
+    ),
+    secondary: (
+        0: #000000,
+        10: #1a1c1c,
+        20: #2f3131,
+        25: #3a3c3c,
+        30: #454747,
+        35: #515353,
+        40: #5d5f5f,
+        50: #767777,
+        60: #909191,
+        70: #aaabab,
+        80: #c6c6c7,
+        90: #e2e2e2,
+        95: #f0f1f1,
+        98: #f9f9f9,
+        99: #fcfcfc,
+        100: #ffffff,
+    ),
+    tertiary: (
+        0: #000000,
+        10: #281900,
+        20: #422c00,
+        25: #513600,
+        30: #5f4100,
+        35: #6e4c00,
+        40: #7e5700,
+        50: #9e6e00,
+        60: #bd8712,
+        70: #dba130,
+        80: #fabc4a,
+        90: #ffdeab,
+        95: #ffeed9,
+        98: #fff8f3,
+        99: #fffbff,
+        100: #ffffff,
+    ),
+    neutral: (
+        0: #000000,
+        10: #291713,
+        20: #402b27,
+        25: #4d3631,
+        30: #59413c,
+        35: #654d47,
+        40: #725853,
+        50: #8d716b,
+        60: #a88a84,
+        70: #c4a49e,
+        80: #e1bfb8,
+        90: #fedbd4,
+        95: #ffede9,
+        98: #fff8f6,
+        99: #fffbff,
+        100: #ffffff,
+        4: #1a0a07,
+        6: #200f0b,
+        12: #2e1b17,
+        17: #392521,
+        22: #452f2b,
+        24: #4a342f,
+        87: #f5d2cb,
+        92: #ffe2dc,
+        94: #ffe9e5,
+        96: #fff0ee,
+    ),
+    neutral-variant: (
+        0: #000000,
+        10: #2d1510,
+        20: #452924,
+        25: #51342e,
+        30: #5e3f39,
+        35: #6b4b44,
+        40: #78564f,
+        50: #936e67,
+        60: #af8880,
+        70: #cba299,
+        80: #e8bdb4,
+        90: #ffdad3,
+        95: #ffede9,
+        98: #fff8f6,
+        99: #fffbff,
+        100: #ffffff,
+    ),
+    error: (
+        0: #000000,
+        10: #410002,
+        20: #690005,
+        25: #7e0007,
+        30: #93000a,
+        35: #a80710,
+        40: #ba1a1a,
+        50: #de3730,
+        60: #ff5449,
+        70: #ff897d,
+        80: #ffb4ab,
+        90: #ffdad6,
+        95: #ffedea,
+        98: #fff8f7,
+        99: #fffbff,
+        100: #ffffff,
+    ),
+);
+
+$_rest: (
+    secondary: map.get($_palettes, secondary),
+    neutral: map.get($_palettes, neutral),
+    neutral-variant: map.get($_palettes,  neutral-variant),
+    error: map.get($_palettes, error),
+);
+$_primary: map.merge(map.get($_palettes, primary), $_rest);
+$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
+
+$light-theme: mat.define-theme((
+    color: (
+        theme-type: light,
+        primary: $_primary,
+        tertiary: $_tertiary,
+    ),
+));
+
+html {
+  @include mat.all-component-themes($light-theme);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button {
+  border: none;
+  box-shadow: none;
+  background-color: #ff350d;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
