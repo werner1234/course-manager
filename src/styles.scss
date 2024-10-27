@@ -150,10 +150,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 button {
-  border: none;
+  border: solid 1px #000;
   box-shadow: none;
-  background-color: #ff350d;
-  color: white;
+  background-color: #fff;
+  color: #000;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;

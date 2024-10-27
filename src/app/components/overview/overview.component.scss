@@ -20,12 +20,12 @@
 }
 
 .warning {
-  background-color: white;
-  color: #8E151D;
+  color: #000;
+  border: solid 1px #000;
   border-radius: 5px;
   display: inline-flex;
   padding: 0 0.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   white-space: pre-wrap;
   font-size: 0.9rem
 }
