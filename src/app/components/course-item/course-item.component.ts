@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {CalculationService} from "../../services/calculation.service";
+import {CourseService} from "../../services/course.service";
 
 @Component({
   selector: 'app-course-item',
@@ -29,7 +30,7 @@ import {CalculationService} from "../../services/calculation.service";
 export class CourseItemComponent implements OnInit, OnChanges {
 
   @Input() course: Course = {
-    name: "", hours: 0, percentageCompleted: 0
+    id: "0", name: "", hours: 0, percentageCompleted: 0
   };
 
   @Input() selected = false;
@@ -41,7 +42,8 @@ export class CourseItemComponent implements OnInit, OnChanges {
   hoursPerWeek = 0;
 
   constructor(
-    private calculationService: CalculationService
+    private calculationService: CalculationService,
+    private courseService: CourseService
   ) {
   }
 
@@ -64,6 +66,7 @@ export class CourseItemComponent implements OnInit, OnChanges {
   markComplete() {
     this.course.percentageCompleted = 100;
     this.course.completionDate = this.course.completionDate || new Date();
+    this.courseService.updateCourse(this.course).subscribe(() => {});
     this.selected = false;
   }
 }

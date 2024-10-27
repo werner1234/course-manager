@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {CourseListComponent} from "../course-list/course-list.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ import {MatMenuModule} from "@angular/material/menu";
     CommonModule,
     CourseListComponent,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

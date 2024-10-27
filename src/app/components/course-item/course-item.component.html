@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="study-time" *ngIf="course.completionDate">
+    <div class="study-time" *ngIf="course.completionDate && course.percentageCompleted != 100">
       <div *ngIf="hoursPerWeek">
         Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete course by {{course.completionDate | date:'MMMM d, yyyy'}}
       </div>

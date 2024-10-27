@@ -18,4 +18,8 @@ export class CourseService {
     // used AI for this list
     return this.http.get<Course[]>('http://localhost:3000/all-courses');
   }
+
+  updateCourse(course: Course): Observable<any> {
+    return this.http.put('http://localhost:3000/all-courses/' + course.id, course);
+  }
 }

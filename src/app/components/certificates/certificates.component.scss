@@ -1,0 +1,49 @@
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.certificates-container {
+  color: #8E151D;
+  width: min(80vw, 800px);
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.certificates-item {
+  display: flex;
+  margin: 0.4rem 0;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.item:nth-child(1),
+.item:nth-child(2) {
+  flex-basis: 45%;
+}
+
+.item:nth-child(3) {
+  flex-basis: 10%;
+  text-align: center;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin: 0.8rem 0;
+}
+
+.completed-date {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.course {
+  display: flex;
+}

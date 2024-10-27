@@ -33,7 +33,7 @@ export class AllCourseListComponent {
       .subscribe((courses) => {
         this.allCourses = courses;
         this.activeCourses.forEach(course2 => {
-          const foundCourse = this.allCourses.find(course1 => course1.name === course2.name);
+          const foundCourse = this.allCourses.find(course1 => course1.id === course2.id);
           foundCourse && (foundCourse.active = true);
         });
       });

@@ -7,7 +7,7 @@ import {CalculationService} from "../../services/calculation.service";
 
 interface Day {
   date: Date;
-  courses?: string[];
+  courseIds?: string[];
 }
 
 @Component({
@@ -26,8 +26,8 @@ export class CalendarComponent implements OnInit {
 
   activeCourses: Course[] = [];
 
-  plottedCourses: {name: string, color: string, hoursPerWeek: number }[] =
-    new Array<{name: string, color: string, hoursPerWeek: number}>();
+  plottedCourses: {id: string, name: string, color: string, hoursPerWeek: number }[] =
+    new Array<{id: string, name: string, color: string, hoursPerWeek: number}>();
 
   calendar: Day[][] = [];
 
@@ -49,8 +49,8 @@ export class CalendarComponent implements OnInit {
     this.mapCoursesToCalendar();
   }
 
-  getPlottedCourse(course: string) {
-    return this.plottedCourses.find(c => c.name === course);
+  getPlottedCourse(id: string) {
+    return this.plottedCourses.find(c => c.id === id);
   }
 
   // used AI for the general idea, but it got it wrong, so I had to change it
@@ -98,7 +98,7 @@ export class CalendarComponent implements OnInit {
     this.plottedCourses = [];
 
     this.activeCourses.forEach(course => {
-      if (!course.completionDate) { return; }
+      if (!course.completionDate || course.percentageCompleted == 100) { return; }
 
       if (typeof course.completionDate === 'string') {
         course.completionDate = new Date(course.completionDate);
@@ -107,12 +107,13 @@ export class CalendarComponent implements OnInit {
       this.calendar.forEach(week => {
         week.forEach(day => {
           if (day.date > new Date() && day.date <= (course.completionDate ?? new Date())) {
-            day.courses = day.courses || [];
-            day.courses.push(course.name);
+            day.courseIds = day.courseIds || [];
+            day.courseIds.push(course.id);
 
-            const plottedCourse = this.plottedCourses.some((c: any) => c.name === course.name);
+            const plottedCourse = this.plottedCourses.some((c: any) => c.id === course.id);
             if (!plottedCourse) {
               this.plottedCourses.push({
+                id: course.id,
                 name: course.name,
                 hoursPerWeek: this.calculationService.getHoursPerWeek(course),
                 color: this.calculationService.generateRandomColor()

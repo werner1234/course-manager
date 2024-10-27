@@ -15,11 +15,11 @@
         <ng-container *ngIf="day.date.getDate() == 1">{{ day.date | date:'MMM d' }}</ng-container>
         <ng-container *ngIf="day.date.getDate() != 1">{{ day.date | date:'d' }}</ng-container>
         <div class="courses">
-          <div class="course" *ngFor="let course of day?.courses">
+          <div class="course" *ngFor="let courseId of day?.courseIds">
             <div
-                *ngIf="getPlottedCourse(course)"
+                *ngIf="getPlottedCourse(courseId)"
                 class="course-indicator"
-                [style.backgroundColor]="getPlottedCourse(course)?.color">
+                [style.backgroundColor]="getPlottedCourse(courseId)?.color">
             </div>
           </div>
         </div>

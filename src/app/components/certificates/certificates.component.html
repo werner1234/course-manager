@@ -1,0 +1,21 @@
+<div class="certificates-container">
+  <h3>Certificates</h3>
+  <div class="certificates-list">
+    <div class="certificates-item heading">
+      <div class="item">Course</div>
+      <div class="item">Completed on</div>
+      <div class="item">Download</div>
+    </div>
+    <div *ngFor="let course of completedCourses" class="certificates-item">
+      <div class="item">
+        {{course.name}}
+      </div>
+      <div class="item">
+        {{course.completionDate | date:'mediumDate'}}
+      </div>
+      <div class="item">
+        <mat-icon (click)="downloadCert(course)">download_2</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
