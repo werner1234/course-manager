@@ -1,4 +1,4 @@
-import {Route, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {CourseListComponent} from "./components/course-list/course-list.component";
 import {CertificatesComponent} from "./components/certificates/certificates.component";
 

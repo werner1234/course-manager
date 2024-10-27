@@ -1,13 +1,13 @@
-import {Component, HostListener} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CourseService} from "../../services/course.service";
-import {Course} from "../../models/course";
-import {CourseItemComponent} from "../course-item/course-item.component";
-import {MatButtonModule} from "@angular/material/button";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {MatIconModule} from "@angular/material/icon";
-import {OverviewComponent} from "../overview/overview.component";
-import {AllCourseListComponent} from "../all-course-list/all-course-list.component";
+import { CourseService } from "../../services/course.service";
+import { Course } from "../../models/course";
+import { CourseItemComponent } from "../course-item/course-item.component";
+import { MatButtonModule } from "@angular/material/button";
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { MatIconModule } from "@angular/material/icon";
+import { OverviewComponent } from "../overview/overview.component";
+import { AllCourseListComponent } from "../all-course-list/all-course-list.component";
 
 @Component({
   selector: 'app-course-list',
@@ -48,6 +48,8 @@ export class CourseListComponent {
   selectedCourse: Course | null = null;
 
   addCourseOpen = false;
+
+  lastUpdated = new Date();
 
   constructor(private courseService: CourseService) {}
 

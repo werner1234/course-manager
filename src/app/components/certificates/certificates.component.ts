@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CourseService} from "../../services/course.service";
-import {Course} from "../../models/course";
-import {MatIconModule} from "@angular/material/icon";
-import { jsPDF } from "jspdf";
+import { CourseService } from '../../services/course.service';
+import { Course } from '../../models/course';
+import { MatIconModule } from '@angular/material/icon';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-certificates',

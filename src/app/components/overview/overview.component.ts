@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Course} from "../../models/course";
-import {CalculationService} from "../../services/calculation.service";
-import {CalendarComponent} from "../calendar/calendar.component";
-import {MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
+import { Course } from '../../models/course';
+import { CalculationService } from '../../services/calculation.service';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-overview',
@@ -23,6 +23,8 @@ export class OverviewComponent {
 
   hoursPerWeek = 0;
 
+  maxTotalHoursPerDayForAllCourses = 0;
+
   nextCompletionCourse: Course | null = null;
 
   constructor(
@@ -32,10 +34,12 @@ export class OverviewComponent {
 
   ngOnInit() {
     this.getNearestCompletionDateHours();
+    this.getTotalHoursPerDayForAllCourses();
   }
 
   ngOnChanges() {
     this.getNearestCompletionDateHours();
+    this.getTotalHoursPerDayForAllCourses();
   }
 
   getNearestCompletionDateHours() {
@@ -45,7 +49,7 @@ export class OverviewComponent {
     }
 
     // find nearest upcoming completion date
-    this.nextCompletionCourse = this.calculationService.getNearestCompletionDateCourse(this.courses);
+    this.nextCompletionCourse = this.calculationService.getNearestCompletionDateCourse([...this.courses]);
 
     if (!this.nextCompletionCourse) {
       this.hoursPerWeek = 0;
@@ -53,6 +57,10 @@ export class OverviewComponent {
     }
 
     this.hoursPerWeek = this.calculationService.getHoursPerWeek(this.nextCompletionCourse);
+  }
+
+  getTotalHoursPerDayForAllCourses() {
+    this.maxTotalHoursPerDayForAllCourses = this.calculationService.getMaxHoursPerDay([...this.courses]);
   }
 
   openCalendar() {

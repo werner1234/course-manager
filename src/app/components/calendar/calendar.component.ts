@@ -1,9 +1,9 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {MatButtonModule} from "@angular/material/button";
-import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
-import {Course} from "../../models/course";
-import {CalculationService} from "../../services/calculation.service";
+import { Component, inject, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { Course } from '../../models/course';
+import { CalculationService } from '../../services/calculation.service';
 
 interface Day {
   date: Date;

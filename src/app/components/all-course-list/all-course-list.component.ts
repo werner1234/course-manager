@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CourseService} from "../../services/course.service";
-import {Course} from "../../models/course";
-import {MatIconModule} from "@angular/material/icon";
+import { CourseService } from '../../services/course.service';
+import { Course } from '../../models/course';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-all-course-list',

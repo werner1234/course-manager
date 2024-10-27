@@ -18,3 +18,14 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.warning {
+  background-color: #8e151e9e;
+  color: white;
+  border-radius: 5px;
+  display: inline-flex;
+  padding: 0 0.6rem;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  font-size: 0.9rem
+}

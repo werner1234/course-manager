@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import {Course} from "../models/course";
-import {HttpClient} from "@angular/common/http";
+import { Course } from '../models/course';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +22,47 @@ export class CalculationService {
   }
 
   getNearestCompletionDateCourse(courses: Course[]): Course {
+    courses = this.validateDates(courses);
+
+    return courses.filter(c => c.completionDate).reduce((prev, current) => {
+      return current.completionDate < prev.completionDate ? current : prev;
+    }, courses[0]);
+  }
+
+  getMaxHoursPerDay(courses: Course[]) {
+    let totalHoursPerDay: { [key: string]: number } = {};
+
+    courses = this.validateDates(courses);
+
+    courses.forEach(course => {
+      const courseHoursLeft = course.hours * (1 - (course.percentageCompleted ?? 0) / 100);
+
+      const timeLeft = course.completionDate!.getTime() - new Date().getTime();
+      const daysLeft = timeLeft / (1000 * 3600 * 24);
+
+      const hoursPerDay = courseHoursLeft / daysLeft;
+
+      for (let count = 0; count < daysLeft; count++) {
+        let todayBase = new Date();
+        todayBase.setDate(todayBase.getDate() + count);
+        totalHoursPerDay[todayBase.toDateString()] = (totalHoursPerDay[todayBase.toDateString()] + hoursPerDay) || hoursPerDay;
+      }
+    });
+
+    if (Object.keys(totalHoursPerDay).length === 0) {
+      return 0;
+    }
+
+    // find the key with the maximum value
+    const maxKey = Object.keys(totalHoursPerDay).reduce((a, b) => totalHoursPerDay[a] > totalHoursPerDay[b] ? a : b);
+
+    // get the maximum value
+    const maxValue = totalHoursPerDay[maxKey];
+
+    return maxValue;
+  }
+
+  validateDates(courses: Course[]) {
     // ensure all dates are Date objects
     courses.forEach(course => {
       if (typeof course.completionDate === 'string') {
@@ -30,14 +70,10 @@ export class CalculationService {
       }
     });
 
-    // get only future dates
-    courses = courses.filter(course => {
-      return (course.completionDate ?? new Date()) > new Date();
+    // get only future date courses
+    return courses.filter(course => {
+      return course.completionDate && course.completionDate > new Date() && course.percentageCompleted != 100;
     });
-
-    return courses.filter(c => c.completionDate).reduce((prev, current) => {
-      return (current.completionDate ?? 0) < (prev.completionDate ?? 0) ? current : prev;
-    }, courses[0]);
   }
 
   // used AI for this method

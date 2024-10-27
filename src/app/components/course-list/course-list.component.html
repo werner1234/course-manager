@@ -19,6 +19,9 @@
       </app-course-item>
     </ng-container>
   </div>
+  <div class="last-updated">
+    Last updated: {{ lastUpdated | date: 'long'}} <span class="bold" (click)="getActiveCourses()"> (Update now) </span>
+  </div>
 </div>
 <div class="add-course-container" [@slideIn]="addCourseOpen ? 'in' : 'out'">
   <app-all-course-list

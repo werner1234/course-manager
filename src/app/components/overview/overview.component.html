@@ -1,7 +1,12 @@
 <div class="overview-container">
-  <span class="bold">Next course: </span>Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete
-  "{{nextCompletionCourse?.name}}" by
-  {{nextCompletionCourse?.completionDate | date:'MMMM d, yyyy'}}.
+  <div *ngIf="maxTotalHoursPerDayForAllCourses > 8" class="warning">
+    <span class="bold">Risk of Missing Goal: </span> You are studying more than 8 hours per day. This may not be sustainable.
+  </div>
+  <div *ngIf="hoursPerWeek">
+    <span class="bold">Next course: </span>Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete
+    "{{nextCompletionCourse?.name}}" by
+    {{nextCompletionCourse?.completionDate | date:'MMMM d, yyyy'}}.
+  </div>
   <div class="link" (click)="openCalendar()">
     (View calendar)
   </div>

@@ -1,9 +1,9 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
-import {provideHttpClient} from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MAT_RIPPLE_GLOBAL_OPTIONS, provideNativeDateAdapter, RippleGlobalOptions} from "@angular/material/core";
+import { MAT_RIPPLE_GLOBAL_OPTIONS, provideNativeDateAdapter, RippleGlobalOptions } from "@angular/material/core";
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
