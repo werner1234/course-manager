@@ -1,0 +1,63 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #8E151D;
+  border-left: 1px solid #8E151D;
+  color: #8E151D;
+}
+
+.week-row {
+  display: flex;
+}
+
+.day {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+  border-right: 1px solid #8E151D;
+  border-bottom: 1px solid #8E151D;
+  width: 14.28%;
+}
+
+.day-name {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.day.current-month {
+  background-color: #f0f0f0;
+}
+
+.courses {
+  margin-top: 1rem;
+}
+
+.course {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-indicator {
+  height: 0.8rem;
+  width: 90%;
+  margin: 0.1rem 0;
+}
+
+.legend {
+  display: flex;
+  justify-content: end;
+  margin-top: 1rem;
+  color: #8E151D;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-color {
+  width: 2rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}

@@ -5,4 +5,14 @@
   align-items: center;
   min-height: 100vh;
   padding: 10vh max(10vw, 50px);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.menu {
+  position: fixed;
+  top: 4vh;
+  right: max(10vw, 50px);
+  color: #8E151D;
+  cursor: pointer;
 }

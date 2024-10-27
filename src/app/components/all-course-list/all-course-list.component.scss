@@ -1,3 +1,7 @@
+:host {
+  text-align: center;
+}
+
 .close-container {
   display: flex;
 
@@ -13,7 +17,7 @@
   margin: 1rem 0;
   border-radius: 5px;
   padding: 0.5rem;
-  background-color: #fcf8f7;
+  background-color: #fff;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -37,12 +41,22 @@
       font-size: 1.5rem;
       width: 1.5rem;
       height: 1.5rem;
-      color: #ff350d;
+      color: #8E151D;
     }
   }
 }
 
-.add-button {
+.buttons {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 6rem;
+
+  button {
+    margin: 0 1rem;
+    width: 12rem;
+  }
+}
+
+.bold {
+  font-weight: bold;
+  white-space: pre-wrap;
 }

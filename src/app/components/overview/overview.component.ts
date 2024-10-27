@@ -1,13 +1,20 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Course} from "../../models/course";
+import {CalculationService} from "../../services/calculation.service";
+import {CalendarComponent} from "../calendar/calendar.component";
+import {MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    CalendarComponent,
+    MatDialogModule
+  ],
   templateUrl: './overview.component.html',
-  styleUrl: './overview.component.css',
+  styleUrl: './overview.component.scss',
 })
 export class OverviewComponent {
   @Input() courses: Course[] = [];
@@ -18,45 +25,48 @@ export class OverviewComponent {
 
   nextCompletionCourse: Course | null = null;
 
-  constructor() {}
+  constructor(
+    private calculationService: CalculationService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.calculateHoursPerDay();
+    this.getNearestCompletionDateHours();
   }
 
   ngOnChanges() {
-    this.calculateHoursPerDay();
+    this.getNearestCompletionDateHours();
   }
 
-  calculateHoursPerDay() {
+  getNearestCompletionDateHours() {
     if (!this.courses || this.courses.length === 0) {
       this.hoursPerWeek = 0;
       return;
     }
 
-    // ensure all dates are Date objects
-    this.courses.forEach(course => {
-      if (typeof course.completionDate === 'string') {
-        course.completionDate = new Date(course.completionDate);
-      }
-    });
+    // find nearest upcoming completion date
+    this.nextCompletionCourse = this.calculationService.getNearestCompletionDateCourse(this.courses);
 
-    // find next upcoming completion date
-    this.nextCompletionCourse = this.courses.filter(c => c.completionDate).reduce((prev, current) => {
-      return (current.completionDate ?? 0) < (prev.completionDate ?? 0) ? current : prev;
-    }, this.courses[0]);
-
-    if (!this.nextCompletionCourse || !this.nextCompletionCourse.completionDate) {
+    if (!this.nextCompletionCourse) {
       this.hoursPerWeek = 0;
       return;
     }
 
-    const courseHoursLeft = this.nextCompletionCourse.hours * (1 - (this.nextCompletionCourse.percentageCompleted ?? 0) / 100);
+    this.hoursPerWeek = this.calculationService.getHoursPerWeek(this.nextCompletionCourse);
+  }
 
-    const completionDate = new Date(this.nextCompletionCourse.completionDate);
-    const timeLeft = completionDate.getTime() - new Date().getTime();
-    const daysLeft = timeLeft / (1000 * 3600 * 24);
+  openCalendar() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = 'min(1000px, 100vw)';
+    dialogConfig.maxWidth = 'none';
+    dialogConfig.data = {
+      activeCourses: this.courses
+    };
 
-    this.hoursPerWeek = Math.ceil(Math.min(courseHoursLeft / daysLeft * 7, courseHoursLeft));
+    const dialogRef = this.dialog.open(CalendarComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

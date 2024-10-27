@@ -1,0 +1,19 @@
+.overview-container {
+  width: min(80vw, 800px);
+  margin-bottom: 10vh;
+  color: #8E151D;
+  text-align: center;
+  line-height: 1.6rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.link {
+  padding-top: 0.6rem;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}

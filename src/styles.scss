@@ -1,7 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-
-
 @use 'sass:map';
 
 @include mat.core();
@@ -160,4 +158,10 @@ button {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.9rem;
+
+  &.btn-secondary {
+    color: #ff350d;
+    background-color: white;
+    border: solid 1px #ff350d;
+  }
 }

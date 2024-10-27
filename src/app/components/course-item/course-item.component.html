@@ -6,7 +6,10 @@
       </div>
       <div class="status">
         <div *ngIf="course.percentageCompleted != 100" class="date-picker-span" [ngClass]="{'no-date': !course.completionDate, 'has-date': course.completionDate}">
-          <input matInput [matDatepicker]="picker" [(ngModel)]="course.completionDate" class="date-picker-input">
+          <input matInput [matDatepicker]="picker"
+                 [(ngModel)]="course.completionDate"
+                 (ngModelChange)="calculateHoursPeWeek()"
+                 class="date-picker-input">
           <mat-datepicker #picker></mat-datepicker>
           <div (click)="picker.open(); $event.stopPropagation()">
             {{ course.completionDate ? ('Deadline: ' + (course.completionDate | date:'shortDate')) : 'Select completion date' }}
@@ -26,6 +29,14 @@
         <div class="progress-bar">
           <div class="progress-bar-fill" [style.width]="course.percentageCompleted + '%'"></div>
         </div>
+      </div>
+    </div>
+    <div class="study-time" *ngIf="course.completionDate">
+      <div *ngIf="hoursPerWeek">
+        Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete course by {{course.completionDate | date:'MMMM d, yyyy'}}
+      </div>
+      <div *ngIf="!hoursPerWeek">
+        Course completion date is in the past
       </div>
     </div>
   </div>

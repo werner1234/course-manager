@@ -66,6 +66,11 @@ export class CourseListComponent {
     this.addCourseOpen = !this.addCourseOpen;
   }
 
+  courseUpdated() {
+    // force change detection
+    this.activeCourses = [...this.activeCourses];
+  }
+
   removeCourse(course: Course) {
     this.activeCourses = this.activeCourses.filter((c) => c !== course);
     this.selectedCourse = null;

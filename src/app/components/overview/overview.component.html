@@ -1,3 +1,8 @@
-<div>
-  Study {{hoursPerWeek}} hours per week to complete {{nextCompletionCourse?.name}} by {{nextCompletionCourse?.completionDate}}
+<div class="overview-container">
+  <span class="bold">Next course: </span>Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete
+  "{{nextCompletionCourse?.name}}" by
+  {{nextCompletionCourse?.completionDate | date:'MMMM d, yyyy'}}.
+  <div class="link" (click)="openCalendar()">
+    View calendar
+  </div>
 </div>

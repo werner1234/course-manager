@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  flex-direction: column;
 }
 
 .course {
-  margin: 1rem 0;
+  margin-top: 1rem;
   padding: 0.5rem 1rem 1rem 1rem;
   border-radius: 5px;
   background-color: #fcf8f7;
@@ -31,6 +32,7 @@
   display: flex;
   font-size: 0.9rem;
   text-align: left;
+  white-space: nowrap;
 }
 
 .date-picker-span {
@@ -83,7 +85,7 @@
 
   mat-icon {
     cursor: pointer;
-    color: #ff350d;
+    color: #8E151D;
     border-radius: 50%;
     background-color: white;
   }
@@ -99,4 +101,17 @@
     margin-right: 5px;
     color: green;
   }
+}
+
+.study-time {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 0.8rem;
+  padding-top: 2rem;
+  color: #8E151D;
+}
+
+.bold {
+  font-weight: bold;
 }

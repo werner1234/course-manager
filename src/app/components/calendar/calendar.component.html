@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Calendar</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="calendar">
+    <div class="week-row">
+      <div class="day day-name">SUN</div>
+      <div class="day day-name">MON</div>
+      <div class="day day-name">TUE</div>
+      <div class="day day-name">WED</div>
+      <div class="day day-name">THU</div>
+      <div class="day day-name">FRI</div>
+      <div class="day day-name">SAT</div>
+    </div>
+    <div class="week-row" *ngFor="let week of calendar">
+      <div class="day" *ngFor="let day of week">
+        <ng-container *ngIf="day.date.getDate() == 1">{{ day.date | date:'MMM d' }}</ng-container>
+        <ng-container *ngIf="day.date.getDate() != 1">{{ day.date | date:'d' }}</ng-container>
+        <div class="courses">
+          <div class="course" *ngFor="let course of day?.courses">
+            <div
+                *ngIf="getPlottedCourse(course)"
+                class="course-indicator"
+                [style.backgroundColor]="getPlottedCourse(course)?.color">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div>
+      <div *ngFor="let course of plottedCourses">
+        <div class="legend-item">
+          <div class="legend-color" [style.backgroundColor]="course.color"></div>
+          <div class="legend-title">{{ course.name }} ({{ course.hoursPerWeek | number:'1.0-2'}} hours per week)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</mat-dialog-actions>

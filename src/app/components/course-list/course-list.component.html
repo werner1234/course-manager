@@ -1,5 +1,5 @@
 <app-overview [courses]="activeCourses"></app-overview>
-<div (click)="selectedCourse = null;">
+<div (click)="selectedCourse = null;" class="courses-container">
   <div class="button-container">
     <button (click)="toggleAddCourse();">Add course(s)</button>
   </div>
@@ -9,10 +9,12 @@
   <div *ngIf="activeCourses" class="course-container">
     <ng-container *ngFor="let course of activeCourses">
       <app-course-item
+          class="course-item"
           [course]="course"
           [selected]="selectedCourse === course"
           (click)="selectedCourse = course; $event.stopPropagation()"
           (removeCourse)="removeCourse($event)"
+          (courseUpdated)="courseUpdated()"
       >
       </app-course-item>
     </ng-container>
