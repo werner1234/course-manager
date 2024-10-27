@@ -1,6 +1,6 @@
 <div class="overview-container">
   <div *ngIf="maxTotalHoursPerDayForAllCourses > 8" class="warning">
-    <span class="bold">Risk of Missing Goal: </span> You are studying more than 8 hours per day. This may not be sustainable.
+    <span class="bold">Risk of Missing Goal: </span> You are studying more than 8 hours per day.
   </div>
   <div *ngIf="hoursPerWeek">
     <span class="bold">Next course: </span>Study <span class="bold">{{hoursPerWeek | number:'1.0-2'}}</span> hour(s) per week to complete
