@@ -21,7 +21,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: normal;
   text-align: center;
 
   &.active {
@@ -51,11 +51,10 @@
   margin-top: 6rem;
 
   button {
-
+    margin: 0.5rem 1rem;
   }
 }
 
 .bold {
   font-weight: bold;
-  white-space: pre-wrap;
 }

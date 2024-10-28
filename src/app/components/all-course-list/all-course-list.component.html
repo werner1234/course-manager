@@ -8,7 +8,7 @@
   <div class="course-item"
        (click)="!course.active && course.selected = !course.selected"
        [ngClass]="{'active': course.active}">
-    {{course.name}} - <span class="bold"> {{course.hours}} </span> hours
+    {{course.name}} - <span class="bold">&nbsp;{{course.hours}}&nbsp;</span>hours
     <span class="icon" *ngIf="course.selected">
       <mat-icon>check_circle</mat-icon>
     </span>
