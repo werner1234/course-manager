@@ -153,10 +153,10 @@ button {
   border-radius: 1px;
   transition: all 0.1s linear;
   border: none;
-  background: white;
+  background: #ff350d;
+  color: white;
   padding: 4px 8px;
   cursor: pointer;
-  border: solid 1px black;
 
   &.btn-secondary {
     color: #ff350d;
